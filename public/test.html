@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JamZia.tv Diagnostic</title>
+<style>
+  body { font-family: monospace; background: #000; color: #0f0; padding: 20px; }
+  .ok { color: #0f0; }
+  .fail { color: #f00; }
+  .warn { color: #ff0; }
+  pre { background: #111; padding: 10px; overflow-x: auto; }
+</style>
+</head>
+<body>
+<h1>JamZia.tv Diagnostic</h1>
+<div id="out"></div>
+<script>
+const out = document.getElementById('out');
+function log(msg, cls) {
+  out.innerHTML += '<p class="' + (cls||'') + '">' + msg + '</p>';
+}
+
+// Test 1: Basic JS works
+log('1. JavaScript running: YES', 'ok');
+
+// Test 2: Check if main app JS loads
+fetch('./assets/index-C13g5Ltg.js', { method: 'HEAD' })
+  .then(r => log('2. Main JS (index-C13g5Ltg.js): ' + (r.ok ? 'FOUND (' + r.status + ')' : 'MISSING (' + r.status + ')'), r.ok ? 'ok' : 'fail'))
+  .catch(e => log('2. Main JS: ERROR - ' + e.message, 'fail'));
+
+// Test 3: Check CSS
+fetch('./assets/index-BM1OZy2S.css', { method: 'HEAD' })
+  .then(r => log('3. Main CSS (index-BM1OZy2S.css): ' + (r.ok ? 'FOUND (' + r.status + ')' : 'MISSING (' + r.status + ')'), r.ok ? 'ok' : 'fail'))
+  .catch(e => log('3. Main CSS: ERROR - ' + e.message, 'fail'));
+
+// Test 4: Check image
+fetch('./creators-engine.jpg', { method: 'HEAD' })
+  .then(r => log('4. Hero image (creators-engine.jpg): ' + (r.ok ? 'FOUND' : 'MISSING'), r.ok ? 'ok' : 'warn'))
+  .catch(e => log('4. Hero image: ERROR', 'warn'));
+
+// Test 5: Check for 3rd party leakage
+fetch('./assets/index-C13g5Ltg.js')
+  .then(r => r.text())
+  .then(text => {
+    const hasStorj = text.toLowerCase().includes('storj');
+    const hasKimi = text.toLowerCase().includes('kimi');
+    log('5. 3rd party leakage: ' + (hasStorj || hasKimi ? 'FOUND (Storj/Kimi)' : 'NONE (Clean)'), hasStorj || hasKimi ? 'fail' : 'ok');
+  })
+  .catch(() => log('5. 3rd party check: Could not read JS', 'warn'));
+
+// Test 6: Check if React mounts
+setTimeout(() => {
+  const root = document.getElementById('root');
+  if (root && root.children.length > 0) {
+    log('6. React mounted: YES (root has children)', 'ok');
+  } else {
+    log('6. React mounted: NO (root is empty) - JS may have crashed', 'fail');
+  }
+}, 3000);
+
+// Test 7: Browser console errors
+window.onerror = function(msg, url, line) {
+  log('7. JS ERROR: ' + msg + ' at line ' + line, 'fail');
+};
+
+// Test 8: User agent
+log('8. Browser: ' + navigator.userAgent.slice(0, 80) + '...', '');
+
+// Test 9: URL
+log('9. Current URL: ' + window.location.href, '');
+
+// Test 10: Check for .htaccess
+fetch('./.htaccess', { method: 'HEAD' })
+  .then(r => log('10. .htaccess: ' + (r.ok ? 'EXISTS (may cause 500!)' : 'NOT FOUND (OK)'), r.ok ? 'warn' : 'ok'))
+  .catch(() => log('10. .htaccess: NOT FOUND (OK)', 'ok'));
+
+</script>
+</body>
+</html>
