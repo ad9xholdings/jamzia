@@ -25,13 +25,13 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Deploy to Network Solutions (SFTP)
+      - name: Deploy to Network Solutions (FTP)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.JAMZIA_TV }}
           username: ${{ secrets.JAMZIA_TV_2 }}
           password: ${{ secrets.JAMZIA_TV_3 }}
-          protocol: ftps-legacy
+          protocol: ftp
           local-dir: ./dist/public/
           server-dir: /htdocs/
           dangerous-clean-slate: true
