@@ -29,7 +29,7 @@ jobs:
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq sshpass
           export SSHPASS="${{ secrets.JAMZIA_TV_3 }}"
-          sshpass -e sftp -oBatchMode=no -oStrictHostKeyChecking=no -oHostKeyAlgorithms=+ssh-rsa -oPubkeyAuthentication=no -P 22 "${{ secrets.JAMZIA_TV_2 }}@${{ secrets.JAMZIA_TV }}" <<EOF
+          sshpass -e sftp -oBatchMode=no -oStrictHostKeyChecking=no -oHostKeyAlgorithms=+ssh-rsa -oPubkeyAuthentication=no "${{ secrets.JAMZIA_TV_2 }}@${{ secrets.JAMZIA_TV }}" <<EOF
           lcd ./dist/public/
           cd /htdocs/
           put -r .
