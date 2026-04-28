@@ -5,7 +5,7 @@
 
 import { z } from "zod";
 import { TRPCError } from "@trpc/server";
-import { createTRPCRouter, authedQuery } from "./lib/trpc";
+import { createRouter as createTRPCRouter, authedQuery } from "./middleware";
 import { getDb } from "./queries/connection";
 import { uploadJobs, mediaAssets } from "../db/schema";
 import { eq, and, desc } from "drizzle-orm";
@@ -23,7 +23,7 @@ function generateMultipartUrls(uploadId: string, bucket: string, key: string, to
   return urls;
 }
 
-export const uploadRouter = createRouter({
+export const uploadRouter = createTRPCRouter({
   /* ── Initiate multipart upload ── */
   initiate: authedQuery
     .input(z.object({
