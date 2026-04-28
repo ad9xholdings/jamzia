@@ -34,7 +34,7 @@ jobs:
           protocol: ftp
           local-dir: ./dist/public/
           server-dir: /htdocs/
-          dangerous-clean-slate: true
+          state-name: .ftp-deploy-sync-state.json
           exclude: |
             **/.git*
             **/.git*/**
