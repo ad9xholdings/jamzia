@@ -5,7 +5,7 @@ import {
   CheckCircle, History, FileText, Menu, X, ChevronRight,
   AlertTriangle, Terminal, Sparkles, Zap, Landmark,
   KeyRound, Globe, ShieldCheck, TrendingUp,
-  ChevronDown, Activity, Fingerprint,
+  ChevronDown, Activity, Fingerprint, Layers
 } from 'lucide-react';
 import { transactionFeed, type Transaction } from '../services/feedService';
 import { parseCommand, formatCommandOutput, type ParsedCommand } from '../services/aiCommandParser';
@@ -214,6 +214,62 @@ export default function JamPay() {
                     <Activity size={10} className={s.color} />
                     <span className="text-[10px] text-[#6B7280]">{s.label}:</span>
                     <span className={`text-[10px] font-medium ${s.color}`}>{s.status}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* ── 11 LAYERS — Payment Fabric Highlight ── */}
+          <div className="px-4 sm:px-6 pb-4">
+            <div className="max-w-2xl mx-auto">
+              <div className="flex items-center gap-2 mb-3">
+                <Layers size={14} className="text-[#7096D1]" />
+                <span className="text-[10px] text-[#7096D1] uppercase tracking-wider font-semibold">11-Layer Architecture</span>
+                <span className="text-[9px] text-[#6B7280] ml-auto">Layer 6 Active</span>
+              </div>
+              <div className="bg-[#0A0F1E] border border-white/[0.06] rounded-xl overflow-hidden">
+                {[
+                  { n: 11, name: 'AI Orchestration', color: '#C9A03F', active: false },
+                  { n: 10, name: 'Platform Shell', color: '#7096D1', active: false },
+                  { n: 9, name: 'Smart Contracts', color: '#F59E0B', active: false },
+                  { n: 8, name: 'Storage Mesh', color: '#10B981', active: false },
+                  { n: 7, name: 'Stream Layer', color: '#A855F7', active: false },
+                  { n: 6, name: 'Payment Fabric — WisdomPay™', color: '#06B6D4', active: true },
+                  { n: 5, name: 'Moderation Engine', color: '#EF4444', active: false },
+                  { n: 4, name: 'Audit Trail', color: '#C9A03F', active: false },
+                  { n: 3, name: 'Analytics', color: '#7096D1', active: false },
+                  { n: 2, name: 'Infrastructure', color: '#6B7280', active: false },
+                  { n: 1, name: 'Identity', color: '#6B7280', active: false },
+                ].map((layer) => (
+                  <div
+                    key={layer.n}
+                    className={`flex items-center gap-3 px-3 py-1.5 border-b border-white/[0.03] last:border-0 ${
+                      layer.active ? 'bg-[#06B6D4]/10' : ''
+                    }`}
+                  >
+                    <span
+                      className="text-[10px] font-bold w-5 text-center"
+                      style={{ color: layer.color }}
+                    >
+                      {layer.n}
+                    </span>
+                    <div
+                      className="w-1.5 h-1.5 rounded-full"
+                      style={{ backgroundColor: layer.color }}
+                    />
+                    <span
+                      className={`text-[10px] ${
+                        layer.active ? 'text-white font-semibold' : 'text-[#6B7280]'
+                      }`}
+                    >
+                      {layer.name}
+                    </span>
+                    {layer.active && (
+                      <span className="ml-auto text-[8px] px-1.5 py-0.5 rounded bg-[#06B6D4]/20 text-[#06B6D4] font-bold">
+                        ACTIVE
+                      </span>
+                    )}
                   </div>
                 ))}
               </div>
