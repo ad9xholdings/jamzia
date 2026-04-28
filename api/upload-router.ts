@@ -5,9 +5,9 @@
 
 import { z } from "zod";
 import { TRPCError } from "@trpc/server";
-import { createTRPCRouter, authedQuery } from "@/api/lib/trpc";
+import { createTRPCRouter, authedQuery } from "./lib/trpc";
 import { getDb } from "./queries/connection";
-import { uploadJobs, mediaAssets } from "@/db/schema";
+import { uploadJobs, mediaAssets } from "../db/schema";
 import { eq, and, desc } from "drizzle-orm";
 
 /* ── Generate multipart presigned URLs ── */
