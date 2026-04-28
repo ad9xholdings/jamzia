@@ -25,18 +25,19 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Deploy to Network Solutions (FTP)
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.JAMZIA_TV }}
-          username: ${{ secrets.JAMZIA_TV_2 }}
-          password: ${{ secrets.JAMZIA_TV_3 }}
-          protocol: ftp
-          local-dir: ./dist/public/
-          server-dir: /htdocs/
-          state-name: .ftp-deploy-sync-state.json
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            **/*.md
+      - name: Deploy via LFTP
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+          lftp -u "${{ secrets.JAMZIA_TV_2 }}","${{ secrets.JAMZIA_TV_3 }}" "${{ secrets.JAMZIA_TV }}" <<EOF
+          set ssl:verify-certificate no
+          set net:timeout 30
+          set net:max-retries 10
+          set net:reconnect-interval-base 5
+          set net:reconnect-interval-multiplier 2
+          set ftp:passive-mode on
+          set ftp:auto-sync-mode off
+          set mirror:parallel-directories yes
+          set mirror:parallel-transfer-count 2
+          mirror --reverse --delete --verbose --continue             --exclude-glob .git*             --exclude-glob .github*             --exclude-glob node_modules*             --exclude-glob *.md             ./dist/public/ /htdocs/
+          bye
+          EOF
