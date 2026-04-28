@@ -61,7 +61,7 @@ export default function SormeSearch() {
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => setShowHistory(true)}
           onKeyDown={handleKeyDown}
-          placeholder="Search SORME™ - 9 Top AI Engines+ more ..."
+          placeholder="Search SORME™ - 9x AI powered"
           className="w-full bg-white/[0.03] border border-white/[0.08] rounded-2xl pl-12 pr-20 py-4 text-sm text-white placeholder-[#6B7280] focus:border-[#7096D1]/30 focus:outline-none transition-all"
         />
         {query && (
