@@ -72,6 +72,7 @@ const JamNewsBusiness = lazy(() => import('./pages/JamNewsBusiness'));
 const StatusPage = lazy(() => import('./pages/StatusPage'));
 const AuditLogs = lazy(() => import('./pages/AuditLogs'));
 const ApiRoot = lazy(() => import('./pages/ApiRoot'));
+const RockNextPage = lazy(() => import('./pages/RockNextPage'));
 const DocsPage = lazy(() => import('./pages/DocsPage'));
 const AppPortal = lazy(() => import('./pages/AppPortal'));
 const JamLearn = lazy(() => import('./pages/JamLearn'));
@@ -397,7 +398,7 @@ export default function App() {
         {/* WL-001 NoFear — Dedicated router (legacy, fully built) */}
         <Route path="/NoFear" element={<LazyWrapper><WhiteLabelHub /></LazyWrapper>} />
         {/* WL-002 RockNext */}
-        <Route path="/rocknext/*" element={<LazyWrapper><SubDAORouter brandId="RockNext" /></LazyWrapper>} />
+        <Route path="/rocknext" element={<LazyWrapper><RockNextPage /></LazyWrapper>} />
         {/* WL-003 SkyLockr */}
         <Route path="/skylockr/*" element={<LazyWrapper><SubDAORouter brandId="SkyLockr" /></LazyWrapper>} />
         {/* WL-004 BlackDiamond */}
