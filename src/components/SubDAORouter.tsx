@@ -43,7 +43,7 @@ function SubDAOHome({ brand }: { brand: WLBrand }) {
                 style={{ backgroundColor: `${brand.primaryColor}15`, color: brand.primaryColor }}>
             {brand.wlId}
           </span>
-          <a href="#/" className="ml-auto text-[10px] text-[#6B7280] hover:text-white no-underline">JamZia™</a>
+          <a href="#" onClick={() => window.location.reload()} className="ml-auto text-[10px] text-[#6B7280] hover:text-white no-underline">{brand.name}™</a>
         </div>
       </div>
 
@@ -105,7 +105,7 @@ export default function SubDAORouter({ brandId }: SubDAORouterProps) {
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-2">SubDAO Not Found</h1>
           <p className="text-sm text-[#6B7280]">{brandId} is not registered.</p>
-          <a href="#/" className="text-sm text-[#7096D1] mt-4 block">Back to JamZia™</a>
+          <a href="#/" className="text-sm text-[#7096D1] mt-4 block">Back to Home</a>
         </div>
       </div>
     );
