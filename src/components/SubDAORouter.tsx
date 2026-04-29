@@ -5,7 +5,6 @@
    ═══════════════════════════════════════════════════════════ */
 
 import { useEffect, useState } from 'react';
-import { Routes, Route, Navigate } from 'react-router';
 import { getBrandById } from '../config/wl-brands';
 import type { WLBrand } from '../config/wl-brands';
 
@@ -272,10 +271,5 @@ export default function SubDAORouter({ brandId }: SubDAORouterProps) {
   useBrandStyles(brand);
   useBrandInjector(brand);
 
-  return (
-    <Routes>
-      <Route path="/" element={<SubDAOHome brand={brand} />} />
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
-  );
+  return <SubDAOHome brand={brand} />;
 }
