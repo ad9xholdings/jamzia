@@ -35,15 +35,19 @@ function useBrandStyles(brand: WLBrand) {
   }, [brand]);
 }
 
-/** DOM text replacer — swaps "JamZia" with brand name */
+/** DOM text replacer — swaps "JamZia" with brand name (no infinite loop) */
 function useBrandInjector(brand: WLBrand) {
   useEffect(() => {
-    const original = brand.originalName || 'JamZia';
     const replacement = brand.name;
     const tmReplacement = `${brand.name}™`;
     const networksReplacement = `${brand.parentNetwork || brand.name} Networks™`;
 
+    let isInjecting = false;
+
     const inject = () => {
+      if (isInjecting) return;
+      isInjecting = true;
+
       const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
       const nodes: Text[] = [];
       let node: Node | null;
@@ -58,23 +62,14 @@ function useBrandInjector(brand: WLBrand) {
           .replace(/JamZia™/g, tmReplacement)
           .replace(/JamZia/g, replacement);
       });
+
+      isInjecting = false;
     };
 
-    // Run injection
+    // Run injection once on mount
     inject();
 
-    // Watch for DOM changes
-    const observer = new MutationObserver(() => inject());
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    // Watch for hash changes
-    const handleHash = () => inject();
-    window.addEventListener('hashchange', handleHash);
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener('hashchange', handleHash);
-    };
+    return () => {};
   }, [brand]);
 }
 
