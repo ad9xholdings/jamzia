@@ -397,25 +397,25 @@ export default function App() {
         {/* WL-001 NoFear — Dedicated router (legacy, fully built) */}
         <Route path="/NoFear" element={<LazyWrapper><WhiteLabelHub /></LazyWrapper>} />
         {/* WL-002 RockNext */}
-        <Route path="/rocknext/*" element={<SubDAORouter brandId="RockNext" />} />
+        <Route path="/rocknext/*" element={<LazyWrapper><SubDAORouter brandId="RockNext" /></LazyWrapper>} />
         {/* WL-003 SkyLockr */}
-        <Route path="/skylockr/*" element={<SubDAORouter brandId="SkyLockr" />} />
+        <Route path="/skylockr/*" element={<LazyWrapper><SubDAORouter brandId="SkyLockr" /></LazyWrapper>} />
         {/* WL-004 BlackDiamond */}
-        <Route path="/blackdiamond/*" element={<SubDAORouter brandId="BlackDiamond" />} />
+        <Route path="/blackdiamond/*" element={<LazyWrapper><SubDAORouter brandId="BlackDiamond" /></LazyWrapper>} />
         {/* WL-005 Conduit */}
-        <Route path="/conduit/*" element={<SubDAORouter brandId="Conduit" />} />
+        <Route path="/conduit/*" element={<LazyWrapper><SubDAORouter brandId="Conduit" /></LazyWrapper>} />
         {/* WL-006 RiverShyre */}
-        <Route path="/rivershyre/*" element={<SubDAORouter brandId="RiverShyre" />} />
+        <Route path="/rivershyre/*" element={<LazyWrapper><SubDAORouter brandId="RiverShyre" /></LazyWrapper>} />
         {/* WL-007 The Collective */}
-        <Route path="/collective/*" element={<SubDAORouter brandId="Collective" />} />
+        <Route path="/collective/*" element={<LazyWrapper><SubDAORouter brandId="Collective" /></LazyWrapper>} />
         {/* WL-008 WisdomPay */}
-        <Route path="/wisdompay/*" element={<SubDAORouter brandId="WisdomPay" />} />
+        <Route path="/wisdompay/*" element={<LazyWrapper><SubDAORouter brandId="WisdomPay" /></LazyWrapper>} />
         {/* WL-009 Ad9x */}
-        <Route path="/ad9x/*" element={<SubDAORouter brandId="Ad9x" />} />
+        <Route path="/ad9x/*" element={<LazyWrapper><SubDAORouter brandId="Ad9x" /></LazyWrapper>} />
         {/* WL-010 BlackDiamondStudios */}
-        <Route path="/blackdiamondstudios/*" element={<SubDAORouter brandId="BlackDiamondStudios" />} />
+        <Route path="/blackdiamondstudios/*" element={<LazyWrapper><SubDAORouter brandId="BlackDiamondStudios" /></LazyWrapper>} />
         {/* WL-011 Ad9xPharma */}
-        <Route path="/ad9xpharma/*" element={<SubDAORouter brandId="Ad9xPharma" />} />
+        <Route path="/ad9xpharma/*" element={<LazyWrapper><SubDAORouter brandId="Ad9xPharma" /></LazyWrapper>} />
 
         {/* Subdomain Routes (§3.2 Compliant) */}
         <Route path="/app" element={<LazyWrapper><AppPortal /></LazyWrapper>} />
