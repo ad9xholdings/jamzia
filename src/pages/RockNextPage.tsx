@@ -14,7 +14,7 @@ export default function RockNextPage() {
             <p className="text-[9px] text-[#6B7280]">RockNext Infrastructure</p>
           </div>
           <span className="hidden sm:inline-block text-[9px] px-2 py-0.5 rounded-full bg-white/[0.05] text-[#6B7280]">WL-002</span>
-          <a href="#/" className="ml-auto text-[10px] text-[#6B7280] hover:text-white no-underline">JamZia™</a>
+          <a href="#/" className="ml-auto text-[10px] text-[#6B7280] hover:text-white no-underline">RockNext™ Home</a>
         </div>
       </div>
 
@@ -26,7 +26,7 @@ export default function RockNextPage() {
           <h2 className="text-3xl sm:text-5xl font-bold mb-2 tracking-tight">RockNext™</h2>
           <p className="text-sm italic mb-2 text-[#A0AEC0]">Infrastructure That Scales</p>
           <p className="text-base text-[#A0AEC0] max-w-xl mx-auto mb-8">
-            Global CDN orchestration, edge computing nodes, and infrastructure management for the JamZia ecosystem.
+            Global CDN orchestration, edge computing nodes, and infrastructure management for the RockNext ecosystem.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-8 mb-8">
@@ -53,7 +53,7 @@ export default function RockNextPage() {
         <div className="text-center py-8 border-t border-white/[0.06]">
           <p className="text-sm font-bold text-white">RockNext™ Infrastructure</p>
           <p className="text-xs italic text-[#A0AEC0]">&quot;Infrastructure That Scales&quot;</p>
-          <p className="text-[9px] text-[#6B7280] mt-3">Powered by JamZia Networks™</p>
+          <p className="text-[9px] text-[#6B7280] mt-3">Powered by RockNext Infrastructure™</p>
           <p className="text-[9px] text-[#6B7280]">© 2026 Ad9x Holdings LLC</p>
         </div>
       </div>
